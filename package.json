@@ -1,0 +1,60 @@
+{
+  "name": "example-with-unocss",
+  "type": "module",
+  "scripts": {
+    "dev": "vinxi dev",
+    "build": "vinxi build",
+    "start": "vinxi start",
+    "prepare": "prisma generate && husky install"
+  },
+  "dependencies": {
+    "@ctrl/tinycolor": "^4.1.0",
+    "@google/genai": "^1.33.0",
+    "@prisma/client": "^6.14.0",
+    "@solidjs/meta": "^0.29.4",
+    "@solidjs/router": "^0.15.3",
+    "@solidjs/start": "^1.1.0",
+    "@unocss/reset": "^66.5.9",
+    "ali-oss": "^6.23.0",
+    "antd-solid": "^0.0.17",
+    "classnames": "^2.5.1",
+    "dayjs": "^1.11.13",
+    "hash-wasm": "^4.12.0",
+    "i18next": "^25.3.2",
+    "js-cookie": "^3.0.5",
+    "jsonwebtoken": "^9.0.2",
+    "lodash-es": "^4.17.21",
+    "nanoid": "^5.1.5",
+    "nodemailer": "^7.0.5",
+    "openai": "^5.12.2",
+    "prisma": "^6.14.0",
+    "solid-js": "^1.9.7",
+    "unocss": "^66.5.9",
+    "vinxi": "^0.5.7"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@types/ali-oss": "^6.16.11",
+    "@types/global-agent": "^3.0.0",
+    "@types/js-cookie": "^3.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/lodash-es": "^4.17.12",
+    "@types/nodemailer": "^7.0.0",
+    "@unocss/preset-mini": "^66.5.9",
+    "@unocss/transformer-variant-group": "^66.5.9",
+    "@unocss/vite": "^66.5.9",
+    "global-agent": "^3.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.5",
+    "prettier": "^3.6.2",
+    "undici": "^7.16.0",
+    "unocss-preset-scrollbar": "^3.2.0"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "prettier --write"
+    ]
+  }
+}

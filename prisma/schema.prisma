@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.1.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id
+  name      String
+  email     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  videos Video[]
+}
+
+// 创建用户的过程中的临时值表
+model UserTemp {
+  id        Int      @id @default(autoincrement())
+  email     String
+  code      String
+  verified  Boolean?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Video {
+  id                     String                   @id
+  title                  String
+  avatar                 Json?
+  tracks                 Json
+  assets                 Json?
+  config                 Json?
+  props                  Json?
+  createdAt              DateTime                 @default(now())
+  updatedAt              DateTime                 @updatedAt
+  User                   User                     @relation(fields: [userId], references: [id])
+  userId                 String
+  VideoToExampleCategory VideoToExampleCategory[]
+}
+
+model VideoExampleCategories {
+  id                     Int                      @id @default(autoincrement())
+  name                   String
+  parentId               Int?
+  createdAt              DateTime                 @default(now())
+  updatedAt              DateTime                 @updatedAt
+  VideoToExampleCategory VideoToExampleCategory[]
+}
+
+// 视频-示例分类关联表
+model VideoToExampleCategory {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Video                  Video                  @relation(fields: [videoId], references: [id])
+  videoId                String
+  VideoExampleCategories VideoExampleCategories @relation(fields: [categoryId], references: [id])
+  categoryId             Int
+}
