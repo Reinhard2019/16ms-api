@@ -20,7 +20,9 @@ const needAuth = (pathname: string) => {
   if (pathname === "/api/examples") return false;
   if (pathname === "/api/login") return false;
   if (pathname === "/api/send-email") return false;
+  if (pathname === "/api/auth/google/callback") return false;
   if (pathname === "/api/git-year") return false;
+  if (pathname === "/api/google-login") return false;
   if (pathname.startsWith("/api/video/public/")) return false;
 
   return true;

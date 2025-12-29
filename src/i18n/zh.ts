@@ -45,4 +45,6 @@ export default {
 
   'Parameter cannot be empty': '传参不能为空',
   'Video not found': '视频不存在',
+  'Invalid Google token': '无效的 Google 令牌',
+  'Enter a valid GitHub username': '请输入正确的 GitHub 用户名',
 };

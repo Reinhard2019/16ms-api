@@ -45,4 +45,6 @@ export default {
 
   'Parameter cannot be empty': 'Parameter cannot be empty',
   'Video not found': 'Video not found',
+  'Invalid Google token': 'Invalid Google token',
+  'Enter a valid GitHub username': 'Enter a valid GitHub username',
 };

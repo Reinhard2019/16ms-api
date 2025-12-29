@@ -3,6 +3,8 @@ import { type APIEvent } from "@solidjs/start/server";
 import OpenAI from "openai";
 import { DEEPSEEK_CONFIG } from "src/consts";
 import dayjs from "dayjs";
+import { message } from "antd-solid";
+import i18next from "i18next";
 
 const openai = new OpenAI(DEEPSEEK_CONFIG);
 
@@ -128,9 +130,16 @@ export async function POST({ request }: APIEvent) {
         totalCount: starredRepositorieNodes.length,
       },
     };
-  });
-
+  }).catch(() => {});
+  
   const lng = request.headers.get("Accept-Language") ?? undefined;
+
+  if (!year) return json({
+    code: 500,
+    message: i18next.t('Enter a valid GitHub username', {
+      lng
+    }),
+  });
 
   let appraise: {
     score: number;
