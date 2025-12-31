@@ -3,17 +3,18 @@ import { type APIEvent } from "@solidjs/start/server";
 import OpenAI from "openai";
 import { isEmpty } from "lodash-es";
 import { DEEPSEEK_CONFIG } from "src/consts";
+import i18next from "i18next";
 
 const openai = new OpenAI(DEEPSEEK_CONFIG);
 
 export async function POST({ request }: APIEvent) {
   const data = await request.json();
-  // const id = Number(params.id)
+  const lng = request.headers.get("Accept-Language") ?? undefined;
 
   if (isEmpty(data)) {
     return json({
       code: 500,
-      message: "传参不能为空",
+      message: i18next.t('Parameter cannot be empty', { lng }),
     });
   }
 
@@ -43,15 +44,4 @@ export async function POST({ request }: APIEvent) {
       Connection: "keep-alive",
     },
   });
-
-  // const completion = await openai.chat.completions.create({
-  //   messages: data,
-  //   model: 'deepseek-chat',
-  //   stream: true,
-  // })
-
-  // return json({
-  //   code: 200,
-  //   data: completion.choices[0].message,
-  // })
 }
